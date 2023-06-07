@@ -1,19 +1,23 @@
 <app-navbar></app-navbar>
-    
-<div class="card mt-4 col-10 offset-4" style="width: 30rem;">
-    <img class="card-img-top" [src]="github.avatar_url" alt="github avatar" [ngStyle]="{'width':'14.5rem'}">
-    <div class="card-body">
-      <h5 class="card-title">{{github.name}}</h5>
-      <p class="card-text">
-        Usuario: @{{github.login}} <br>
-        Ubicación: {{github.location}} <br>
-        Educación: {{github.bio}} <br>
-        Repositorios: {{github.public_repos}}
-      </p>
-    </div>
-    <div class="card-body">
-        <a [href]="github.html_url" target="_blank" class="link">
-            <i class="fa-brands fa-github"></i>
-        </a>
-    </div>
-  </div>
+
+<div class="container">
+    <div class="row">
+        <div class="card mt-2 col-6 offset-3 blur-in">
+            <img class="card-img-top" [src]="github.avatar_url" alt="github avatar" [ngStyle]="{'width':'14.5rem'}">
+            <div class="card-body">
+              <h5 class="card-title">{{github.name}}</h5>
+              <p class="card-text">
+                Usuario: @{{github.login}} <br>
+                Ubicación: {{github.location}} <br>
+                Educación: {{github.bio}} <br>
+              </p>
+              <p>Juego propio: Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore corrupti mollitia!</p>
+            </div>
+            <div class="card-body">
+                <a [href]="github.html_url" target="_blank" class="link">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        </div>
+</div>
+
