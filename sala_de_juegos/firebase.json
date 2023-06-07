@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "sala_de_juegos",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

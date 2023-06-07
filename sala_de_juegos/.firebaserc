@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "sala-2f32c": {
+      "hosting": {
+        "sala_de_juegos": [
+          "sala-2f32c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "sala-2f32c"
+  }
+}
