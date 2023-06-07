@@ -7,10 +7,22 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './pages/home/home.component';
+import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
+import { RegistroComponent } from './pages/registro/registro.component';
+import { ErrorComponent } from './pages/error/error.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    LoginComponent,
+    HomeComponent,
+    QuienSoyComponent,
+    RegistroComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
