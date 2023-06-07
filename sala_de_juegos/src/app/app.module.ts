@@ -13,6 +13,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { JuegosComponent } from './pages/juegos/juegos.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,10 +26,14 @@ import { ErrorComponent } from './pages/error/error.component';
     QuienSoyComponent,
     RegistroComponent,
     ErrorComponent,
+    JuegosComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())

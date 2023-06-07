@@ -141,9 +141,11 @@
         transform: scale(1.15);
     } 
     
+    /*
     .icon:active, :focus {
         background-color: rgba(22, 105, 230, 0.527);
     }
+    */
 
     header {
         background: #0c0c0c;  /* fallback for old browsers */
@@ -151,8 +153,3 @@
         background: linear-gradient(to right, #434343, #111111); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
   
-  body {
-    background: #FC466B;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #3F5EFB, #FC466B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  }

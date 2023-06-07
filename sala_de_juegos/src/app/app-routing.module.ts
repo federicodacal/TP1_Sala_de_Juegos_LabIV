@@ -5,11 +5,13 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { JuegosComponent } from './pages/juegos/juegos.component';
 
 const routes: Routes = [
   { path: 'login', component:LoginComponent },
   { path: 'registro', component:RegistroComponent },
   { path: 'quien-soy', component:QuienSoyComponent },
+  { path: 'juegos', component:JuegosComponent },
   { path: '', component:HomeComponent },
   { path: '**', component:ErrorComponent }
 ];
