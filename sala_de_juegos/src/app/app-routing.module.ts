@@ -8,8 +8,8 @@ import { ErrorComponent } from './pages/error/error.component';
 import { JuegosComponent } from './pages/juegos/juegos.component';
 
 const routes: Routes = [
-  { path: 'login', component:LoginComponent },
   { path: 'registro', component:RegistroComponent },
+  { path: 'login', component:LoginComponent },
   { path: 'quien-soy', component:QuienSoyComponent },
   { path: 'juegos', component:JuegosComponent },
   { path: '', component:HomeComponent },

@@ -1,1 +1,23 @@
-<p>login works!</p>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+
+      <div class="fadeIn first">
+        <img [src]="loginIcon" id="icon" alt="icon" />
+      </div>
+      
+
+      <select (change)="onChange($event)" class="fadeIn fourth" aria-label="Default select example">
+          <option selected disabled value="">Acceso rápido</option>
+          <option value="admin">Admin</option>
+          <option value="empleado">Empleado</option>
+        </select>
+      <form (ngSubmit)="ingresar()">
+        <input type="text" id="user" class="fadeIn second" name="user" placeholder="Ingrese su correo electrónico" [(ngModel)]="user">
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Ingrese su clave" [(ngModel)]="password">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+    
+    </div>
+</div>
+
