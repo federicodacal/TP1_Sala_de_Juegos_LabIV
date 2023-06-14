@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  icon:string='assets/img/icon.png';
+
 }
