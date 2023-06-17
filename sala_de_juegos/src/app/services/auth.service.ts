@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable, of, switchMap } from 'rxjs';
-import { Firestore, doc, docData } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, doc, docData, serverTimestamp, setDoc } from '@angular/fire/firestore';
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +24,27 @@ export class AuthService {
     )
   }
 
-  async register({email, password}:any) {
-    try {
-      const userAuth = await this.authentication.createUserWithEmailAndPassword(email, password);
-      return userAuth;
+  async register({email, password, name}:any) {
+    /*
+    this.authentication.createUserWithEmailAndPassword(email, password)
+      .then((res:any) => {
+        const colRef = collection(this.firestore, 'users');
+        addDoc(colRef, {email:email, name:name, uid:res.user.uid})
+      });
+    */
+     try {
+      const credential = await this.authentication.createUserWithEmailAndPassword(email, password);
+
+      console.info('credential: ', credential);
+      if(credential.user != null) {
+        const uid = credential.user?.uid;
+  
+        const document = doc(this.firestore, `users/${uid}`);
+        return setDoc(document, {uid, email, name, createdAt:serverTimestamp()});
+      }
     }
-    catch (err) {
+    catch(err) {
+      console.log('err: ' + err);
       return null;
     }
   }

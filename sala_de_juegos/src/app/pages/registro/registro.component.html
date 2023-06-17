@@ -8,7 +8,7 @@
       
       <form [formGroup]="credentials" (ngSubmit)="register()">
 
-        <input formControlName="name" type="text" id="name" class="fadeIn second" name="name" placeholder="Ingrese su nombre de usuario">
+        <input formControlName="name" type="text" id="name" class="fadeIn second" name="name" placeholder="Ingrese su nombre de usuario" maxlength="24">
         <br>
         <small style="color: rgb(255, 255, 255); font-weight: bold;"
           *ngIf="this.credentials.get('name')?.invalid && this.credentials.get('name')?.touched">
@@ -22,14 +22,14 @@
           Correo electrónico es requerido
         </small>
 
-        <input formControlName="password" type="text" id="password" class="fadeIn third" name="password" placeholder="Ingrese su clave">
+        <input formControlName="password" type="password" id="password" class="fadeIn third" name="password" placeholder="Ingrese su clave">
         <br>
         <small style="color: rgb(255, 255, 255); font-weight: bold;"
           *ngIf="this.credentials.get('password')?.invalid && this.credentials.get('password')?.touched">
           Clave es requerida
         </small>
 
-        <input formControlName="confirmPassword" type="text" id="password" class="fadeIn third" name="confirmPassword" placeholder="Confirme su clave">
+        <input formControlName="confirmPassword" type="password" id="password" class="fadeIn third" name="confirmPassword" placeholder="Confirme su clave">
         <br>
         <small style="color: rgb(255, 255, 255); font-weight: bold;"
           *ngIf="this.credentials.get('confirmPassword')?.invalid && this.credentials.get('confirmPassword')?.touched">

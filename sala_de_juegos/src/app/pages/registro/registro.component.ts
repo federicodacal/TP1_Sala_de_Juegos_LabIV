@@ -19,6 +19,7 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
     this.credentials = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(24)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
@@ -27,14 +28,25 @@ export class RegistroComponent implements OnInit {
 
   async register() {
     if(this.credentials.get('password')?.value === this.credentials.get('confirmPassword')?.value) {
-      const email = await this.auth.register(this.credentials.value);
-  
-      if(email) {
-        this.router.navigateByUrl('/home', {replaceUrl:true});
-      }
-      else {
-        
-      }
+      const name = this.credentials.get('name')?.value;
+
+      this.auth.register(this.credentials.value)
+        .then(user => {
+          this.router.navigateByUrl('', {replaceUrl:true});
+          Swal.fire(
+            'Registro exitoso.',
+            `Te damos la bienvenida, ${name}!`,
+            'success'
+          );
+        })
+        .catch(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ocurrió un problema',
+          });
+          console.log('err', err);
+        });
     }
     else {
       Swal.fire({
@@ -42,7 +54,6 @@ export class RegistroComponent implements OnInit {
         title: 'Oops...',
         text: 'Debe coincidir la clave con la confirmación',
       });
-      console.log('');
     }
 
   }
