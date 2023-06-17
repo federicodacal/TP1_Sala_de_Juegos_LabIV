@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   password:string|undefined;
   loginIcon:string = 'https://icons-for-free.com/iconfiles/ico/256/home+page+profile+user+icon-1320184041392976124.ico';
 
-  constructor(private auth:AuthService, private router:Router, private fb:FormBuilder) { }
+  constructor(private auth:AuthService, private router:Router, private fb:FormBuilder, private spinner:NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.credentials = this.fb.group({
@@ -35,21 +36,28 @@ export class LoginComponent implements OnInit {
 
   async login() {
     if(this.email != null && this.password != null) { 
+      this.spinner.show();
       this.auth.login(this.credentials.value)
       .then(() => {
-        Swal.fire(
-          'Bienvenido!',
-          'Sesión iniciada',
-          'success'
-          );
-          this.router.navigate(['']);
+
+        setTimeout(() => {
+          Swal.fire(
+            'Bienvenido! ',
+            `Bienvenid@ ${this.user.name}!`,
+            'success'
+            );
+            this.spinner.hide();
+            this.router.navigate(['']);
+          }, 2000);
         })
         .catch(() => {
+          this.spinner.hide();
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Campos incorrectos',
           });
+      
         });
     }
     else {
