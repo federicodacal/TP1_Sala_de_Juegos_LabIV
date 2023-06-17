@@ -13,7 +13,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ErrorComponent } from './pages/error/error.component';
-import { JuegosComponent } from './pages/juegos/juegos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
@@ -26,8 +25,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     HomeComponent,
     QuienSoyComponent,
     RegistroComponent,
-    ErrorComponent,
-    JuegosComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -35,8 +33,8 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
   ],
   providers: [{provide: FIREBASE_OPTIONS, useValue: environment.firebase}],

@@ -6,4 +6,6 @@ export const environment = {
     apiKey: 'AIzaSyAgOdENapm6UuFIYmhh_nVfVWcbMnKLZH4',
     authDomain: 'sala-2f32c.firebaseapp.com',
     messagingSenderId: '1095695716404',
-  },};
+  },
+  production: false
+};

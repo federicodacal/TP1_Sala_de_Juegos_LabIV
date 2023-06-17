@@ -1,4 +1,4 @@
-
+<app-navbar></app-navbar>
 <div class="wrapper fadeInDown">
     <div id="formContent">
 
@@ -8,14 +8,26 @@
       
 
       <select (change)="onChange($event)" class="fadeIn fourth" aria-label="Default select example">
-          <option selected disabled value="">Acceso rápido</option>
-          <option value="admin">Admin</option>
-          <option value="empleado">Empleado</option>
-        </select>
-      <form (ngSubmit)="ingresar()">
-        <input type="text" id="user" class="fadeIn second" name="user" placeholder="Ingrese su correo electrónico" [(ngModel)]="user">
-        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Ingrese su clave" [(ngModel)]="password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
+        <option selected disabled value="">Acceso rápido</option>
+        <option value="user1">Usuario 1</option>
+        <option value="user2">Usuario 2</option>
+      </select>
+      <br>
+
+      <form [formGroup]="credentials" (ngSubmit)="login()">
+        <input formControlName="email" type="text" id="email" class="fadeIn second" name="email" placeholder="Ingrese su correo electrónico" [(ngModel)]="email">
+        <br>
+        <small style="color: rgb(255, 255, 255); font-weight: bold;"
+          *ngIf="this.credentials.get('email')?.invalid && this.credentials.get('email')?.touched">
+          Correo electrónico es requerido</small>
+
+        <input formControlName="password" type="password" id="password" class="fadeIn third" name="password" placeholder="Ingrese su clave" [(ngModel)]="password">
+        <br>
+        <small style="color: rgb(255, 255, 255); font-weight: bold;"
+          *ngIf="this.credentials.get('password')?.invalid && this.credentials.get('password')?.touched">
+          Clave es requerida</small>
+        <br>
+        <input type="submit" class="fadeIn fourth" value="Acceder">
       </form>
     
     </div>

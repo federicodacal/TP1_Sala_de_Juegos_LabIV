@@ -1,1 +1,44 @@
-<p>registro works!</p>
+
+<app-navbar></app-navbar>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <div class="fadeIn first">
+        <img [src]="loginIcon" id="icon" alt="icon" />
+      </div>
+      
+      <form [formGroup]="credentials" (ngSubmit)="register()">
+
+        <input formControlName="name" type="text" id="name" class="fadeIn second" name="name" placeholder="Ingrese su nombre de usuario">
+        <br>
+        <small style="color: rgb(255, 255, 255); font-weight: bold;"
+          *ngIf="this.credentials.get('name')?.invalid && this.credentials.get('name')?.touched">
+          El nombre es requerido
+        </small>
+        
+        <input formControlName="email" type="text" id="email" class="fadeIn second" name="email" placeholder="Ingrese su correo electrónico">
+        <br>
+        <small style="color: rgb(255, 255, 255); font-weight: bold;"
+          *ngIf="this.credentials.get('email')?.invalid && this.credentials.get('email')?.touched">
+          Correo electrónico es requerido
+        </small>
+
+        <input formControlName="password" type="text" id="password" class="fadeIn third" name="password" placeholder="Ingrese su clave">
+        <br>
+        <small style="color: rgb(255, 255, 255); font-weight: bold;"
+          *ngIf="this.credentials.get('password')?.invalid && this.credentials.get('password')?.touched">
+          Clave es requerida
+        </small>
+
+        <input formControlName="confirmPassword" type="text" id="password" class="fadeIn third" name="confirmPassword" placeholder="Confirme su clave">
+        <br>
+        <small style="color: rgb(255, 255, 255); font-weight: bold;"
+          *ngIf="this.credentials.get('confirmPassword')?.invalid && this.credentials.get('confirmPassword')?.touched">
+          Confirmación requerida
+        </small>
+        <br>
+
+        <input type="submit" class="fadeIn fourth" value="Confirmar">
+      </form>
+    
+    </div>
+</div>
