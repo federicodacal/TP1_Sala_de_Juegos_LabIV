@@ -12,12 +12,6 @@
 
 .blur-in{animation:blur-in 1s linear both} @keyframes blur-in{0%{filter:blur(12px);opacity:0}100%{filter:blur(0);opacity:0.94}}
 
-.card-img-top {
-    display: block;
-    width: 60%;
-    margin: auto;
-    opacity: 1;
-}
 
 .link {
     color:rgb(231, 229, 229);

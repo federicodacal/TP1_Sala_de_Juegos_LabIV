@@ -5,12 +5,14 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { ChatComponent } from './pages/chat/chat.component';
 
 const routes: Routes = [
   { path: 'registro', component:RegistroComponent },
   { path: 'login', component:LoginComponent, },
   { path: 'quien-soy', component:QuienSoyComponent },
-  { path: '', component:HomeComponent,  },
+  { path: 'chat', component:ChatComponent},
+  { path: '', component:HomeComponent },
   { path: '**', component:ErrorComponent }
 ];
 

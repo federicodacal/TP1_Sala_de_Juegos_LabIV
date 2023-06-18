@@ -19,6 +19,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ChatComponent } from './pages/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     HomeComponent,
     QuienSoyComponent,
     RegistroComponent,
-    ErrorComponent
+    ErrorComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

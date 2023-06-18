@@ -25,13 +25,7 @@ export class AuthService {
   }
 
   async register({email, password, name}:any) {
-    /*
-    this.authentication.createUserWithEmailAndPassword(email, password)
-      .then((res:any) => {
-        const colRef = collection(this.firestore, 'users');
-        addDoc(colRef, {email:email, name:name, uid:res.user.uid})
-      });
-    */
+
      try {
       const credential = await this.authentication.createUserWithEmailAndPassword(email, password);
 
