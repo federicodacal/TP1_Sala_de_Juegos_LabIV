@@ -19,32 +19,32 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgxSpinnerModule } from "ngx-spinner";
-import { ChatComponent } from './pages/chat/chat.component';
+import { ChatModule } from './pages/chat/chat.module';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     LoginComponent,
     HomeComponent,
     QuienSoyComponent,
     RegistroComponent,
     ErrorComponent,
-    ChatComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
+    FormsModule, 
+    SharedModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxSpinnerModule,
+    //NgxSpinnerModule,
     provideAuth(() => getAuth()),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
   ],
-  //exports:[NgxSpinnerModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{provide: FIREBASE_OPTIONS, useValue: environment.firebase}],
   bootstrap: [AppComponent],
