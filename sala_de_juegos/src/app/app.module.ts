@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ChatModule } from './pages/chat/chat.module';
 import { SharedModule } from './shared/shared.module';
+import { JuegosComponent } from './pages/juegos/juegos.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { SharedModule } from './shared/shared.module';
     QuienSoyComponent,
     RegistroComponent,
     ErrorComponent,
+    //JuegosComponent,
   ],
   imports: [
     BrowserModule,
