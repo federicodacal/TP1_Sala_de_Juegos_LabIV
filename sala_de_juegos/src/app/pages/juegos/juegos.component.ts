@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class JuegosComponent {
 
+  opt:number=0;
+
   constructor(private router:Router) { }
 
   redirigir(opt:number) {

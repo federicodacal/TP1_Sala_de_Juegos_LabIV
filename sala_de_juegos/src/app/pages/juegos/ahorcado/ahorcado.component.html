@@ -1,1 +1,53 @@
-<p>ahorcado works!</p>
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <div class="card mt-2 col-6 offset-3 blur-in">
+            <h2 style="font-size:30px; font-weight: 700; margin-bottom: 0.5;">Ahorcado</h2>
+            <div id="hangman" style="margin-top: 0;">
+                <div id="hangman-display">
+                    <div>
+                        <img [src]='this.img[0]' alt="ahorcado" *ngIf="this.incorrectGuesses.length == 0">
+                        <img [src]='this.img[1]' alt="ahorcado" *ngIf="this.incorrectGuesses.length == 1">
+                        <img [src]='this.img[2]' alt="ahorcado" *ngIf="this.incorrectGuesses.length == 2">
+                        <img [src]='this.img[3]' alt="ahorcado" *ngIf="this.incorrectGuesses.length == 3">
+                        <img [src]='this.img[4]' alt="ahorcado" *ngIf="this.incorrectGuesses.length == 4">
+                        <img [src]='this.img[5]' alt="ahorcado" *ngIf="this.incorrectGuesses.length == 5">
+                        <img [src]='this.img[6]' alt="ahorcado" *ngIf="this.incorrectGuesses.length == 6">
+                        <img [src]='this.img[7]' alt="ahorcado" *ngIf="this.incorrectGuesses.length == 7">
+                    </div>
+                    <!-- 
+                    <div id="hangman-stick" [ngClass]="{ 'visible': hangmanState >= 1 }"></div>
+                    <div id="hangman-body" [ngClass]="{ 'visible': hangmanState >= 2 }"></div>
+                    <div id="hangman-left-arm" [ngClass]="{ 'visible': hangmanState >= 3 }"></div>
+                    <div id="hangman-right-arm" [ngClass]="{ 'visible': hangmanState >= 4 }"></div>
+                    <div id="hangman-left-leg" [ngClass]="{ 'visible': hangmanState >= 5 }"></div>
+                    <div id="hangman-right-leg" [ngClass]="{ 'visible': hangmanState >= 6 }"></div>
+                    -->
+                </div>
+            <div id="word-display">
+                <span *ngFor="let letter of word">{{ letter.visible ? letter.value : '_ ' }}</span>
+            </div>
+            <div id="guesses" *ngIf="this.incorrectGuesses.length > 0">
+                <p>Letras incorrectas: <span *ngFor="let letter of incorrectGuesses">{{letter}}</span></p>
+                <br>
+                <small *ngIf="this.maxIncorrectGuesses > this.incorrectGuesses.length">Te quedan {{this.maxIncorrectGuesses - this.incorrectGuesses.length}} intentos</small>
+            </div>
+
+            <div id="game-over" *ngIf="gameOver">
+                <div *ngIf="this.maxIncorrectGuesses <= this.incorrectGuesses.length">
+                    <p style="font-size: 24px; color:rgb(248, 248, 248); font-weight: 600; text-shadow: 4px 4px 7px rgb(255, 0, 0);"><strong>GAME OVER!</strong></p>
+                </div>
+                <div *ngIf="isWin()">
+                    <p style="font-size: 20px; color:rgb(248, 248, 248); font-weight: 600; text-shadow: 4px 4px 7px rgb(17, 0, 255);"><strong>GANASTE!</strong></p>
+                </div>
+                <button type="button" class="btn btn-light" (click)="resetGame()" style="font-size:24px">JUGAR</button>
+            </div>
+
+            
+            <div id="keyboard">
+                <button *ngFor="let letter of getAvailableLetters()" (click)="makeGuess(letter)">{{ letter}}</button>
+            </div>
+
+            </div>
+    </div>
+</div>

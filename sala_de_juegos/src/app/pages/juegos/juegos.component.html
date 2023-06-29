@@ -1,4 +1,10 @@
 <app-navbar></app-navbar>
+<div *ngIf="this.opt == 0"> 
+
+</div>
 <button (click)="redirigir(1)">Ahorcado</button>
 <button (click)="redirigir(2)">Mayor Menor</button>
 <button (click)="redirigir(3)">Preguntados</button>
+<button (click)="redirigir(3)">Juego Propio</button>
+
+<app-ahorcado *ngIf="this.opt == 1"></app-ahorcado>
