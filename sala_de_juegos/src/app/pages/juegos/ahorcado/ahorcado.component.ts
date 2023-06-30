@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import Swal from 'sweetalert2';
 
 interface Letter {
   value: string;
@@ -58,7 +59,6 @@ export class AhorcadoComponent {
     }
 
     if (this.isLetterAlreadyGuessed(letter)) {
-      alert('You have already guessed that letter.');
       return;
     }
 

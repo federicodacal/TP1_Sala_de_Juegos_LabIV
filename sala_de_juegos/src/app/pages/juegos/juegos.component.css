@@ -1,0 +1,27 @@
+.card {
+    text-align: center;
+    background: #FC466B;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3F5EFB, #FC466B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    opacity: 0.94;
+    border-radius: 10px;
+    border-style: groove;
+    box-shadow: 10px 5px 5px rgba(165, 21, 21, 0.801);
+    color: white;
+}
+
+.blur-in{animation:blur-in 1s linear both} @keyframes blur-in{0%{filter:blur(12px);opacity:0}100%{filter:blur(0);opacity:0.94}}
+
+.card-img-top {
+    display: block;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 2em;
+    margin-bottom: 2em;
+    opacity: 1;
+}
+
+.link {
+    color:rgb(231, 229, 229);
+    font-size: 24px;
+}

@@ -44,7 +44,7 @@
             </div>
 
             
-            <div id="keyboard">
+            <div id="keyboard" *ngIf="!gameOver">
                 <button *ngFor="let letter of getAvailableLetters()" (click)="makeGuess(letter)">{{ letter}}</button>
             </div>
 

@@ -1,10 +1,45 @@
 <app-navbar></app-navbar>
-<div *ngIf="this.opt == 0"> 
+
+<div class="row">
+
+    <div class="col-3">
+        <div class="card mt-2 blur-in">
+            <img class="card-img-top mt-4" src='assets/img/ahorcado/hangman.png' alt="ahorcado" [ngStyle]="{'width':'6.5rem', 'hegiht':'8rem'}">
+            <div class="card-body">
+              <h5 class="card-title">Ahorcado</h5>
+              <button class="btn btn-light" (click)="redirigir(1)">JUGAR</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="card mt-2 blur-in">
+            <img class="card-img-top" src='assets/img/cards/card_back.png' alt="mayor_menor" [ngStyle]="{'width':'6.5rem', 'hegiht':'8rem'}">
+            <div class="card-body">
+              <h5 class="card-title">Mayor o Menor</h5>
+              <button class="btn btn-light" (click)="redirigir(2)">JUGAR</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card mt-2 blur-in">
+            <img class="card-img-top mt-4" src='assets/img/flags.avif' alt="preguntados" [ngStyle]="{'width':'6.5rem', 'hegiht':'8rem'}">
+            <div class="card-body">
+              <h5 class="card-title">Preguntados</h5>
+              <button class="btn btn-light" (click)="redirigir(3)">JUGAR</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card mt-2 blur-in">
+            <h2>En progreso...</h2>
+            <img class="card-img-top" [ngStyle]="{'width':'5.5rem', 'hegiht':'8rem'}">
+            <div class="card-body">
+              <h5 class="card-title">Juego Propio</h5>
+              <button class="btn btn-light" (click)="redirigir(4)">JUGAR</button>
+            </div>
+        </div>
+    </div>
 
 </div>
-<button (click)="redirigir(1)">Ahorcado</button>
-<button (click)="redirigir(2)">Mayor Menor</button>
-<button (click)="redirigir(3)">Preguntados</button>
-<button (click)="redirigir(3)">Juego Propio</button>
 
-<app-ahorcado *ngIf="this.opt == 1"></app-ahorcado>
