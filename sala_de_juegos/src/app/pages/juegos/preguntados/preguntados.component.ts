@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CountriesService } from 'src/app/services/countries.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-preguntados',
@@ -43,7 +44,7 @@ export class PreguntadosComponent {
         this.startGame();
       } 
       else {
-        this.router.navigate(['/login']);
+        this.router.navigate(['']);
       }
     });
   } 
@@ -93,15 +94,14 @@ export class PreguntadosComponent {
         this.wrongAnswer = true;
         setTimeout(() => {
           this.wrongAnswer = false;
-        }, 300);
-
+        }, 200);
       }
 
       if (this.currentIndex < 9) {
         this.currentIndex++;
         setTimeout(() => {
           this.currentQuestion = this.listOfQuestions[this.currentIndex];
-        }, 500);
+        }, 300);
       }
 
       if (this.attempts > 0) {
@@ -112,8 +112,18 @@ export class PreguntadosComponent {
           if (this.score >= 4) {
             this.victory = true;
             this.gameOverText = '¡GANASTE!';
+            Swal.fire(
+              'Felicitaciones!',
+              `Ganaste!`,
+              'success'
+            );
           } 
           else {
+            Swal.fire(
+              'GAME OVER!',
+              `Perdiste. Mejor suerte la próxima.`,
+              'error'
+            );
           }
           this.createResult();
         }
@@ -131,7 +141,6 @@ export class PreguntadosComponent {
     this.gameOver = false;
     this.gameOverText = '¡PERDISTE!';
     this.currentQuestion = this.listOfQuestions[this.currentIndex];
-    //this.notifyService.showInfo('Juego Reiniciado', 'Preguntados');
   } 
 
   createResult() {
