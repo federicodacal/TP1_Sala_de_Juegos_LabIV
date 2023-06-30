@@ -1,1 +1,59 @@
-<p>mayor-menor works!</p>
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div class="card mt-2 col-6 offset-3 blur-in">
+      <h2 style="font-size:30px; font-weight: 700; margin-bottom: 0.5;">MAYOR O MENOR</h2>
+
+      <div id="game" class="mt-0">
+        <div id="cards">
+          <div id="current-card" class="mt-0.5">
+            <h3>Carta</h3>
+            <div class="card-container mt-1">
+              <div class="card" [ngClass]="{'flipped': nextCardVisible}">
+                <img *ngIf="currentCard" [src]="'assets/img/cards/' + currentCard.value + '_' + currentCard.suit.toLowerCase() + '.png'" alt="Current Card" style="width:140px; height:180px">
+              </div>
+            </div>
+          </div>
+          <div id="next-card">
+            <h3>Siguiente...</h3>
+            <div *ngIf="nextCard">
+              <img [src]="nextCardVisible ? ('assets/img/cards/' + nextCard.value + '_' + nextCard.suit.toLowerCase() + '.png') : 'assets/img/cards/card_back.png'" alt="Card" style="width:140px; height:180px">
+            </div>
+          </div>
+        </div>
+
+        <div id="game-info" *ngIf="!gameOver">
+            <div *ngIf="lastGuess">
+              <h3>CORRECTO!</h3>
+            </div>
+            <div *ngIf="!lastGuess && this.lives < 3">
+              <h3>INCORRECTO!</h3>
+            </div>
+          <p>Puntos: {{ score }}</p>
+          <p>Intentos: {{ lives }}</p>
+        </div>
+
+        <div id="buttons" *ngIf="!gameOver" class="row mb-2">
+            <div class="col-6">
+                <button class="btn btn-primary" (click)="makeGuess(true)">MAYOR</button>
+            </div>
+            <div class="col-6"> 
+                <button class="btn btn-danger" (click)="makeGuess(false)">MENOR</button>
+            </div>
+        </div>
+
+        <div id="game-over" *ngIf="gameOver" class="mb-1">
+            <div *ngIf="this.lives < 1">
+                <p style="font-size: 24px; color:rgb(248, 248, 248); font-weight: 600; text-shadow: 4px 4px 7px rgb(255, 0, 0);"><strong>GAME OVER!</strong></p>
+            </div>
+            <div *ngIf="this.lives > 0">
+                <p style="font-size: 20px; color:rgb(248, 248, 248); font-weight: 600; text-shadow: 4px 4px 7px rgb(17, 0, 255);"><strong>GANASTE!</strong></p>
+            </div>
+          <p style="font-size: 16px; font-weight: 500;">Puntaje: {{ score }}</p>
+          <button type="button" class="btn btn-light" (click)="resetGame()" style="font-size:24px">JUGAR</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

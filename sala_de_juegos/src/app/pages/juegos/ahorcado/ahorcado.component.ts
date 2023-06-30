@@ -20,14 +20,14 @@ export class AhorcadoComponent {
   displayImg:string='';
 
   img:string[] = [
-    '../assets/img/hangman0.gif',
-    '../assets/img/hangman1.gif',
-    '../assets/img/hangman2.gif',
-    '../assets/img/hangman3.gif',
-    '../assets/img/hangman4.gif',
-    '../assets/img/hangman5.gif',
-    '../assets/img/hangman6.gif',
-    '../assets/img/hangman7.gif',
+    '../assets/img/ahorcado/hangman0.gif',
+    '../assets/img/ahorcado/hangman1.gif',
+    '../assets/img/ahorcado/hangman2.gif',
+    '../assets/img/ahorcado/hangman3.gif',
+    '../assets/img/ahorcado/hangman4.gif',
+    '../assets/img/ahorcado/hangman5.gif',
+    '../assets/img/ahorcado/hangman6.gif',
+    '../assets/img/ahorcado/hangman7.gif',
   ];
 
   alphabet: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
