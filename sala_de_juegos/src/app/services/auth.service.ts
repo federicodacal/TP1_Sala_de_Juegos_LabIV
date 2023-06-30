@@ -42,9 +42,9 @@ export class AuthService {
         return setDoc(document, {uid, email, name, createdAt:serverTimestamp()});
       }
     }
-    catch(err) {
+    catch(err:any) {
       console.log('err: ' + err);
-      return null;
+      throw new Error(err);
     }
   }
 
@@ -65,7 +65,7 @@ export class AuthService {
       this.userLog = true;
     }
     catch(err:any) {
-      
+
     }
   }
 

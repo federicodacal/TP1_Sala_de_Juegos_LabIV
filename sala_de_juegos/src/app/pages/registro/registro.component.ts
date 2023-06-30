@@ -45,7 +45,7 @@ export class RegistroComponent implements OnInit {
             );
           }, 1000);
         })
-        .catch(err => {
+        .catch((err:any) => {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
