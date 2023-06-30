@@ -5,6 +5,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { LoginGuard } from './guards/login.guard';
 //import { ChatComponent } from './pages/chat/chat.component';
 
 const routes: Routes = [
@@ -14,12 +15,14 @@ const routes: Routes = [
   { 
     //path: 'chat', component:ChatComponent
     path: 'chat',
-    loadChildren: () => import('./pages/chat/chat.module').then(m => m.ChatModule)
+    loadChildren: () => import('./pages/chat/chat.module').then(m => m.ChatModule),
+    canActivate: [LoginGuard]
   },
   { 
     //path: 'juegos', component:JuegoComponent
     path: 'juegos',
-    loadChildren: () => import('./pages/juegos/juegos.module').then(m => m.JuegosModule)
+    loadChildren: () => import('./pages/juegos/juegos.module').then(m => m.JuegosModule),
+    canActivate: [LoginGuard]
   },
   { path: '', component:HomeComponent },
   { path: '**', component:ErrorComponent }

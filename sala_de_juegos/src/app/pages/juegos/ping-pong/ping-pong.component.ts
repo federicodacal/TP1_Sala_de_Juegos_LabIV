@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ping-pong',
@@ -79,6 +80,11 @@ export class PingPongComponent {
       // Check collision with ground
       if (this.ballY > 280) {
         this.gameOver = true;
+        Swal.fire(
+          'GAME OVER!',
+          `Perdiste. Mejor suerte la próxima.`,
+          'error'
+        );
       }
     }, 16);
   }

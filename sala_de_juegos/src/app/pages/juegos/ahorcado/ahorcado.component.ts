@@ -69,9 +69,23 @@ export class AhorcadoComponent {
 
     this.updateWordDisplay();
 
-    if (this.isWin() || this.isLose()) {
+    if (this.isWin()) { 
       this.gameOver = true;
+      Swal.fire(
+        'Felicitaciones!',
+        `Ganaste!`,
+        'success'
+      );
     }
+    else if (this.isLose()) {
+      this.gameOver = true;
+      Swal.fire(
+        'GAME OVER!',
+        `Perdiste. Mejor suerte la próxima.`,
+        'error'
+      );
+    }
+
   }
 
   isLetterAlreadyGuessed(letter: string): boolean {

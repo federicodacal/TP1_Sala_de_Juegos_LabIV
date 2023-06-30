@@ -30,8 +30,8 @@
             <div id="guesses" *ngIf="this.incorrectGuesses.length > 0">
                 <p>Letras incorrectas: <span *ngFor="let letter of incorrectGuesses">{{letter}}</span></p>
                 <br>
-                <small *ngIf="this.maxIncorrectGuesses > this.incorrectGuesses.length">Te quedan {{this.maxIncorrectGuesses - this.incorrectGuesses.length}} intentos</small>
             </div>
+            <small *ngIf="this.maxIncorrectGuesses > this.incorrectGuesses.length">Te quedan {{this.maxIncorrectGuesses - this.incorrectGuesses.length}} intentos</small>
 
             <div id="game-over" *ngIf="gameOver">
                 <div *ngIf="this.maxIncorrectGuesses <= this.incorrectGuesses.length">

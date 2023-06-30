@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 interface Card {
   value: number;
@@ -92,6 +93,11 @@ export class MayorMenorComponent implements OnInit {
       if (this.lives === 0) {
         this.lastGuess = false;
         this.endGame();
+        Swal.fire(
+          'GAME OVER!',
+          `Te quedaste sin intentos!`,
+          'error'
+        );
       }
     }
 

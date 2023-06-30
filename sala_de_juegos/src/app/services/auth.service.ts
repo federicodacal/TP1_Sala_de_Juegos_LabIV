@@ -10,11 +10,13 @@ import { Firestore, addDoc, collection, doc, docData, serverTimestamp, setDoc } 
 export class AuthService {
 
   userData:any = {};
+  userLog:boolean = false;
 
   constructor(private authentication:AngularFireAuth, private firestore:Firestore) { 
     this.userData = this.authentication.authState.pipe(
       switchMap((user: any) => {
         if (user) {
+          this.userLog = true;
           const userRef = doc(this.firestore, `users/${user.uid}`);
           return docData(userRef, {idField:'uid'}) as Observable<any>;
         } else {
@@ -34,6 +36,9 @@ export class AuthService {
         const uid = credential.user?.uid;
   
         const document = doc(this.firestore, `users/${uid}`);
+
+        this.userLog = true;
+
         return setDoc(document, {uid, email, name, createdAt:serverTimestamp()});
       }
     }
@@ -44,12 +49,24 @@ export class AuthService {
   }
 
   async login({email, password}:any) {
-    return this.authentication.signInWithEmailAndPassword(email, password);
+    try {
+      this.authentication.signInWithEmailAndPassword(email, password);
+      this.userLog = true;
+    } 
+    catch(err:any) {
+
+    }
   }
 
 
   logout() {
-    return this.authentication.signOut();
+    try { 
+      this.authentication.signOut();
+      this.userLog = true;
+    }
+    catch(err:any) {
+      
+    }
   }
 
   getUser() {

@@ -1,1 +1,42 @@
-<p>preguntados works!</p>
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div class="card mt-2 col-6 offset-3 blur-in">
+      <h2 style="font-size:30px; font-weight: 700; margin-bottom: 0.5;">PREGUNTADOS</h2>
+
+      <div class="container d-flex flex-column justify-content-center" *ngIf="user">
+        <p class="puntuacion">
+          Puntaje: {{score}}
+          <br>
+          <span>Quedan {{attempts}} preguntas</span>
+        </p>
+        <div class="row" *ngIf="loadedQuestions">
+          <div>
+            <img src="{{currentQuestion.flag}}" alt="flag" style="width: 200px; height: 150px;"/>
+          </div>
+          <div>
+            <h2>Adivine el país:</h2>
+            <p class="juego-terminado" [ngClass]="victory ? 'victoria' : 'derrota'" *ngIf="gameOver">
+              {{gameOverText}}
+            </p>
+            <div *ngIf="activeGame" class="mb-2" style="margin-left: 1em;">
+                <div class="row mb-2">
+                    <div class="col-3" *ngFor="let option of currentQuestion.options">
+                        <button class="btn btn-light" 
+                          (click)="play(option, $event)" [ngClass]="correctAnswer ? 'correcta' : ''" [ngClass]="wrongAnswer ? 'incorrecta' : ''"> {{ option }}
+                        </button>
+                    </div>  
+                </div>
+            </div>
+            <div *ngIf="!activeGame">
+              <button class="btn-reiniciar" (click)="resetGame()">
+                JUGAR
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+   </div>
+</div>
