@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+<div class="card mt-2 col-6 offset-3 blur-in" style="height: 500px;">
+  <div class="row">
+        <div class="container">
+            <h2>Ping Pong</h2>
+            <div class="game-container">
+                <div class="paddle" [style.left.px]="paddleX"></div>
+                <div class="ball" [style.left.px]="ballX" [style.top.px]="ballY"></div>
+                <div class="ground"></div>
+            </div>
+            <div class="game-info">
+                <p>Puntaje: {{ score }}</p>
+                <button *ngIf="gameOver" (click)="resetGame()">JUGAR</button>
+            </div>
+        </div>
+   </div>
+</div>

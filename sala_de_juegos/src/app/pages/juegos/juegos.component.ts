@@ -23,6 +23,9 @@ export class JuegosComponent {
       case 3:
         this.router.navigateByUrl('/juegos/preguntados');
         break;
+      case 4:
+        this.router.navigateByUrl('/juegos/ping-pong');
+        break;
     }
   }
 }

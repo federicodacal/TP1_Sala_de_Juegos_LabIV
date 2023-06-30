@@ -7,6 +7,7 @@ import { JuegosRoutingModule } from './juegos-routing.module';
 import { AhorcadoComponent } from './ahorcado/ahorcado.component';
 import { MayorMenorComponent } from './mayor-menor/mayor-menor.component';
 import { PreguntadosComponent } from './preguntados/preguntados.component';
+import { PingPongComponent } from './ping-pong/ping-pong.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { PreguntadosComponent } from './preguntados/preguntados.component';
     AhorcadoComponent,
     MayorMenorComponent,
     PreguntadosComponent,
+    PingPongComponent,
 ],  
   imports: [
     CommonModule,
