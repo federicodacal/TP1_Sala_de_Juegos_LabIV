@@ -73,8 +73,12 @@ export class LoginComponent implements OnInit {
       this.email = 'juancarlos@mail.com';
       this.password = '123456';
     }
-    else {
+    else if(value.target.value === 'user2') {
       this.email = 'anamaria@mail.com';
+      this.password = '123456';
+    }
+    else {
+      this.email = 'administrador@admin.com';
       this.password = '123456';
     }
   }

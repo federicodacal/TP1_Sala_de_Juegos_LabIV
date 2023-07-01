@@ -8,6 +8,8 @@ import { ErrorComponent } from './pages/error/error.component';
 import { LoginGuard } from './guards/login.guard';
 import { ListadosComponent } from './pages/listados/listados.component';
 import { EncuestaComponent } from './pages/encuesta/encuesta.component';
+import { AdminGuard } from './guards/admin.guard';
+import { ListadoEncuestaComponent } from './pages/listado-encuesta/listado-encuesta.component';
 //import { ChatComponent } from './pages/chat/chat.component';
 
 const routes: Routes = [
@@ -28,6 +30,7 @@ const routes: Routes = [
   },
   { path: 'listados', component:ListadosComponent, canActivate: [LoginGuard] },
   { path: 'encuesta', component:EncuestaComponent, canActivate: [LoginGuard] },
+  { path: 'respuestas', component:ListadoEncuestaComponent, canActivate: [AdminGuard] },
   { path: '', component:HomeComponent },
   { path: '**', component:ErrorComponent }
 ];

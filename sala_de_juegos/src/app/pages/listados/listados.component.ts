@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-listados',
@@ -24,10 +25,11 @@ export class ListadosComponent implements OnInit, OnDestroy {
 
   loading:boolean = false;
 
-  constructor(private auth:AuthService, private db:DatabaseService) { }
+  constructor(private auth:AuthService, private db:DatabaseService, private spinner:NgxSpinnerService) { }
 
   ngOnInit(): void {
-    this.loading = true;
+    this.spinner.show();
+
     this.subAhorcado = this.db.getResults('ahorcado').subscribe((res:any) => {
       this.ahorcadoListado = res;
     });
@@ -45,7 +47,7 @@ export class ListadosComponent implements OnInit, OnDestroy {
     });
 
     setTimeout(() => {
-      this.loading = false;
+      this.spinner.hide();
     }, 2000);
 
   }

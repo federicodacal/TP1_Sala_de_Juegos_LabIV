@@ -11,11 +11,12 @@ export class AuthService {
 
   userData:any = {};
   userLog:boolean = false;
+  admin:boolean = false;
 
   constructor(private authentication:AngularFireAuth, private firestore:Firestore) { 
     this.userData = this.authentication.authState.pipe(
       switchMap((user: any) => {
-        if (user) {
+        if(user) {
           this.userLog = true;
           const userRef = doc(this.firestore, `users/${user.uid}`);
           return docData(userRef, {idField:'uid'}) as Observable<any>;
@@ -39,7 +40,7 @@ export class AuthService {
 
         this.userLog = true;
 
-        return setDoc(document, {uid, email, name, createdAt:serverTimestamp()});
+        return setDoc(document, {uid, email, name, createdAt:serverTimestamp(), perfil:'usuario'});
       }
     }
     catch(err:any) {

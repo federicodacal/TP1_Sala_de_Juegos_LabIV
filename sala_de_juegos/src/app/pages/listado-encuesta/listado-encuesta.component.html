@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+
+<div class="container" *ngIf="this.user.perfil == 'administrador'">
+
+    <div class="row">
+        <div class="card mt-2 mb-3 col-9 offset-1 blur-in">
+
+                <h2>ENCUESTAS ENVIADAS</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Puntaje</th>
+                        <th scope="col">Recomienda</th>
+                        <th scope="col">Juego Preferido</th>
+                        <th scope="col">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let e of encuestas">
+                            <td>{{e.name}}</td>
+                            <td>{{e.lastName}}</td>
+                            <td>{{e.edad}}</td>
+                            <td>{{e.telefono}}</td>
+                            <td>{{e.puntaje}}</td>
+                            <td>{{e.recomendacion}}</td>
+                            <td>{{e.juegoPreferido}}</td>
+                            <td>{{e.date}}</td>
+                        </tr>
+                    </tbody>
+                    </table>       
+        </div>
+    </div>
+</div>

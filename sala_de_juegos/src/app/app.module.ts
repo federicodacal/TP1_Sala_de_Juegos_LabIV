@@ -24,6 +24,7 @@ import { SharedModule } from './shared/shared.module';
 import { JuegosComponent } from './pages/juegos/juegos.component';
 import { ListadosComponent } from './pages/listados/listados.component';
 import { EncuestaComponent } from './pages/encuesta/encuesta.component';
+import { ListadoEncuestaComponent } from './pages/listado-encuesta/listado-encuesta.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { EncuestaComponent } from './pages/encuesta/encuesta.component';
     ErrorComponent,
     ListadosComponent,
     EncuestaComponent,
+    ListadoEncuestaComponent,
     //JuegosComponent,
   ],
   imports: [

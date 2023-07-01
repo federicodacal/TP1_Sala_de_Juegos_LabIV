@@ -1,1 +1,174 @@
-<p>encuesta works!</p>
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="card mt-2 mb-3 col-6 offset-3 blur-in">
+
+            <form [formGroup]="formulario">
+                <div class="row">
+                    
+                        <div class="form-group col-6 mt-1">
+                            <label for="name">Nombre</label>
+                            <input formControlName="name" type="text" id="name" class="form-control" name="name" [(ngModel)]="name">
+                            
+                            <small style="color: rgb(255, 255, 255); font-weight: bold;"
+                              *ngIf="this.formulario.get('name')?.invalid && this.formulario.get('name')?.touched">
+                              Nombre es requerido</small>
+                        </div>
+
+                        <div class="form-group col-6 mt-1">
+            
+                            <label for="lastName">Apellido</label>
+                            <input formControlName="lastName" type="lastName" id="lastName" class="form-control" name="lastName" [(ngModel)]="lastName">
+                            
+                            <small style="color: rgb(255, 255, 255); font-weight: bold;"
+                              *ngIf="this.formulario.get('lastName')?.invalid && this.formulario.get('lastName')?.touched">
+                              Apellido es requerido</small>
+                            <br>
+                        </div>
+            
+                        <div class="form-group col-6 mt-1">
+            
+                            <label for="edad">Edad</label>
+                            <input formControlName="edad" type="number" id="edad" class="form-control" name="edad" [(ngModel)]="edad">
+                            
+                            <small style="color: rgb(255, 255, 255); font-weight: bold;"
+                              *ngIf="this.formulario.get('edad')?.invalid && this.formulario.get('edad')?.touched">
+                              Edad es requerida</small>
+                            <br>
+                        </div>
+
+                        <div class="form-group col-6 mt-1">
+            
+                            <label for="telefono">Telefono</label>
+                            <input formControlName="telefono" type="number" id="telefono" class="form-control" name="telefono" [(ngModel)]="telefono">
+                            
+                            <small style="color: rgb(255, 255, 255); font-weight: bold;"
+                              *ngIf="this.formulario.get('telefono')?.invalid && this.formulario.get('telefono')?.touched">
+                              Telefono es requerido</small>
+                            <br>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="puntaje" class="form-label">Puntaje de la página: </label>
+                            <p><strong>{{puntaje}}</strong></p>
+                            <input type="range" class="form-range" min="1" max="10" [value]="puntaje" id="puntaje" (input)="valueChanged($event)">
+                        </div>
+
+                        <div class="col-6">
+                            <div class="col-sm mb-3">
+                                <label class="form-label">¿Nos recomendarías a tus conocidos?</label>
+                                <div style="margin-left: 2em;">
+                                    <select
+                                      style="width: 10rem"
+                                      class="form-select"
+                                      id="recomendacion"
+                                      formControlName="recomendacion"
+                                    >
+                                      <option value="" selected disabled>Seleccionar</option>
+                                      <option value="si">SI</option>
+                                      <option value="no">NO</option>
+                                    </select>
+                                    <small
+                                      style="color: rgb(255, 255, 255)"
+                                      *ngIf="
+                                      formulario.controls['recomendacion'].errors?.['required'] &&
+                                      formulario.controls['recomendacion'].touched
+                                          "
+                                    >
+                                      <strong>Respuesta requerida</strong>
+                                    </small>
+                                  </div>
+
+                                </div>
+                        </div>
+
+                        <div class="col-6 mt-2">
+                            <div class="col-sm mb-3">
+                                <label class="form-label">¿Cuál fue tu juego preferido?</label>
+                                <div class="form-check">
+                                  <input
+                                    formControlName="juegoPreferido"
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="juegoPreferido"
+                                    id="opcion1"
+                                    value="Ahorcado"
+                                    checked
+                                    required
+                                  />
+                                  <label class="form-check-label" for="opcion1"> Ahorcado </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    formControlName="juegoPreferido"
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="juegoPreferido"
+                                    id="opcion2"
+                                    value="Mayor Menor"
+                                  />
+                                  <label class="form-check-label" for="opcion2"> Mayor o Menor </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    formControlName="juegoPreferido"
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="juegoPreferido"
+                                    id="opcion3"
+                                    value="Preguntados"
+                                  />
+                                  <label class="form-check-label" for="opcion3"> Preguntados </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    formControlName="juegoPreferido"
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="juegoPreferido"
+                                    id="opcion4"
+                                    value="Ping Pong"
+                                  />
+                                  <label class="form-check-label" for="opcion4">
+                                    Ping Pong
+                                  </label>
+                                </div>
+                              </div>
+                        </div>
+
+                        
+                         
+                </div>
+            </form>
+
+            <div class="row mb-2" style="margin-top:3em;">
+                <div class="col-4">
+                    <button class="btn btn-light" role="button" (click)="enviar()" [disabled]="this.formulario.invalid">
+                        <i class="fa-solid fa-check"></i>
+                        ACEPTAR
+                    </button>
+                </div>
+
+                <div class="col-4">
+                  <span class="loader mt-0" *ngIf="this.loading"></span>
+                </div>
+
+                <div class="col-4">
+                    <a [routerLink]="''">
+                    <button class="btn btn-danger" role="button" style="background-color: #e24d08; ">
+                        <i class="fa-solid fa-xmark"></i>
+                        CANCELAR
+                    </button>
+                    </a>
+                </div>                            
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<ngx-spinner type="pacman" [fullScreen] = "true">
+  <p style="color: rgb(255, 255, 255); margin-top: 2em;">Iniciando sesión...</p>
+</ngx-spinner>
