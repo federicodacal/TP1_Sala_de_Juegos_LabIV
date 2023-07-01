@@ -1,4 +1,6 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -6,7 +8,9 @@ import Swal from 'sweetalert2';
   templateUrl: './ping-pong.component.html',
   styleUrls: ['./ping-pong.component.css']
 })
-export class PingPongComponent {
+export class PingPongComponent implements OnInit {
+
+  user:any = null;
   paddleX!: number;
   ballX!: number;
   ballY!: number;
@@ -15,7 +19,16 @@ export class PingPongComponent {
   score!: number;
   gameOver!: boolean;
 
+  constructor(private auth:AuthService, private db:DatabaseService) { }
+
   ngOnInit(): void {
+
+    this.auth.userData.subscribe(async(res:any) => {
+      if (res) {
+        this.user = res;
+      }
+    });
+
     this.paddleX = 0;
     this.ballX = 50;
     this.ballY = 50;
@@ -80,6 +93,7 @@ export class PingPongComponent {
       // Check collision with ground
       if (this.ballY > 280) {
         this.gameOver = true;
+        this.sendResult();
         Swal.fire(
           'GAME OVER!',
           `Perdiste. Mejor suerte la próxima.`,
@@ -103,5 +117,23 @@ export class PingPongComponent {
     this.ballY = 50;
     this.ballSpeedX = 2; // Reset ball speed X
     this.ballSpeedY = 2; // Reset ball speed Y
+  }
+
+  sendResult() {
+    const date = new Date();
+    const currentDate = date.toLocaleDateString();
+    const result = {
+      game: 'ping-pong',
+      user: this.user,
+      currentDate: currentDate,
+      score: this.score,
+    };
+    this.db.saveResults('ping-pong', result)
+      .then((res:any) => {
+        console.log('Resultados Enviados!');
+      })
+      .catch((err:any) => {
+        console.log('Error al enviar Resultados!');
+      });
   }
 }

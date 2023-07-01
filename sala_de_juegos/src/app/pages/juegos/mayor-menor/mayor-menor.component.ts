@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import Swal from 'sweetalert2';
 
 interface Card {
@@ -12,6 +14,8 @@ interface Card {
   styleUrls: ['./mayor-menor.component.css']
 })
 export class MayorMenorComponent implements OnInit {
+
+  user:any = null;
   cards: Card[] = []; // Array to hold all the cards
   currentCard: Card | null | undefined = null; // Current card being displayed
   nextCard: Card | null | undefined = null; // Next card to be guessed
@@ -21,7 +25,16 @@ export class MayorMenorComponent implements OnInit {
   gameOver = false; // Flag to indicate if the game is over
   lastGuess!:boolean;
 
+  constructor(private auth:AuthService, private db:DatabaseService) { }
+
   ngOnInit(): void {
+
+    this.auth.userData.subscribe(async(res:any) => {
+      if(res) {
+        this.user = res;
+      }
+    });
+
     this.initializeGame();
     this.currentCard = this.cards.pop(); 
   }
@@ -113,6 +126,25 @@ export class MayorMenorComponent implements OnInit {
   }
 
   endGame(): void {
+    this.sendResult();
     this.gameOver = true;
+  }
+
+  sendResult() {
+    const date = new Date();
+    const currentDate = date.toLocaleDateString();
+    const result = {
+      game: 'mayor-menor',
+      user: this.user,
+      currentDate: currentDate,
+      score: this.score,
+    };
+    this.db.saveResults('mayor-menor', result)
+      .then((res:any) => {
+        console.log('Resultados Enviados!');
+      })
+      .catch((err:any) => {
+        console.log('Error al enviar Resultados!');
+      });
   }
 }

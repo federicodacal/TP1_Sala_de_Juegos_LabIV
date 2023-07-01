@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CountriesService } from 'src/app/services/countries.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -26,7 +27,7 @@ export class PreguntadosComponent {
   correctAnswer:boolean = false;
   wrongAnswer:boolean = false;
 
-  constructor(private auth:AuthService, private router:Router, private countries:CountriesService) {
+  constructor(private auth:AuthService, private router:Router, private countries:CountriesService, private db:DatabaseService) {
     this.countries.getCountries();
   }
 
@@ -125,7 +126,7 @@ export class PreguntadosComponent {
               'error'
             );
           }
-          this.createResult();
+          this.sendResult();
         }
       }
     }
@@ -143,22 +144,22 @@ export class PreguntadosComponent {
     this.currentQuestion = this.listOfQuestions[this.currentIndex];
   } 
 
-  createResult() {
+  sendResult() {
     const date = new Date();
     const currentDate = date.toLocaleDateString();
     const result = {
       game: 'preguntados',
       user: this.user,
       currentDate: currentDate,
-      victory: this.victory,
+      score: this.score,
+      victory: this.victory
     };
-    //this.authService
-    //  .sendUserResult('preguntadosResultados', result)
-    //  .then((res: any) => {
-     //   console.log('Resultados Enviados!');
-    //  })
-    //  .catch((err: any) => {
-    //    console.log('Error al enviar Resultados!');
-    //  });
+    this.db.saveResults('preguntados', result)
+      .then((res:any) => {
+        console.log('Resultados Enviados!');
+      })
+      .catch((err:any) => {
+        console.log('Error al enviar Resultados!');
+      });
   }
 }

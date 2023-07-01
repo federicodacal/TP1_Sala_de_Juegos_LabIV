@@ -57,9 +57,7 @@ export class LoginComponent implements OnInit {
             title: 'Oops...',
             text: 'Campos incorrectos',
           });
-      
         });
-        this.spinner.hide();
     }
     else {
       Swal.fire({

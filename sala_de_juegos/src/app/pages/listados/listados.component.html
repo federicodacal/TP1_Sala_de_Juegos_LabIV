@@ -1,0 +1,101 @@
+<app-navbar></app-navbar>
+<div class="container">
+
+    <div class="row">
+
+        <div class="card mt-2 col-5">
+
+            <h2>TOP 5 AHORCADO</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Jugador</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Puntaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let r of ahorcadoListado; let i=index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{r.user.name}}</td>
+                        <td>{{r.currentDate}}</td>
+                        <td>{{r.score}}</td>
+                    </tr>
+                </tbody>
+                </table>
+        </div>
+
+        <div class="card mt-2 col-5" style="margin-left: 5em;">
+
+            <h2>TOP 5 MAYOR o MENOR</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Jugador</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Puntaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let r of mayorMenorListado; let i=index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{r.user.name}}</td>
+                        <td>{{r.currentDate}}</td>
+                        <td>{{r.score}}</td>
+                    </tr>
+                </tbody>
+                </table>
+        </div>
+    </div>
+
+    <div class="row mt-1 mb-2">
+
+        <div class="card mt-2 col-5">
+
+            <h2>TOP 5 PREGUNTADOS</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Jugador</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Puntaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let r of preguntadosListado; let i=index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{r.user.name}}</td>
+                        <td>{{r.currentDate}}</td>
+                        <td>{{r.score}}</td>
+                    </tr>
+                </tbody>
+                </table>
+        </div>
+
+        <div class="card mt-2 col-5" style="margin-left: 5em;">
+
+            <h2>TOP 5 PING PONG</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Jugador</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Puntaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let r of pingPongListado; let i=index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{r.user.name}}</td>
+                        <td>{{r.currentDate}}</td>
+                        <td>{{r.score}}</td>
+                    </tr>
+                </tbody>
+                </table>
+        </div>
+    </div>
+</div>

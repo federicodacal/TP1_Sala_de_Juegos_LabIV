@@ -22,6 +22,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { ChatModule } from './pages/chat/chat.module';
 import { SharedModule } from './shared/shared.module';
 import { JuegosComponent } from './pages/juegos/juegos.component';
+import { ListadosComponent } from './pages/listados/listados.component';
+import { EncuestaComponent } from './pages/encuesta/encuesta.component';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { JuegosComponent } from './pages/juegos/juegos.component';
     QuienSoyComponent,
     RegistroComponent,
     ErrorComponent,
+    ListadosComponent,
+    EncuestaComponent,
     //JuegosComponent,
   ],
   imports: [

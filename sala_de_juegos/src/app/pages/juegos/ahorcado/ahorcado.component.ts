@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import Swal from 'sweetalert2';
 
 interface Letter {
@@ -11,7 +13,9 @@ interface Letter {
   templateUrl: './ahorcado.component.html',
   styleUrls: ['./ahorcado.component.css']
 })
-export class AhorcadoComponent {
+export class AhorcadoComponent implements OnInit {
+
+  user:any = null;
   word: Letter[] = [];
   wordString: string = '';
   incorrectGuesses: string[] = [];
@@ -19,6 +23,8 @@ export class AhorcadoComponent {
   gameOver: boolean = false;
   hangmanState: number = 0;
   displayImg:string='';
+  maxIncorrectGuesses: number = 7;
+  victory:boolean = false;
 
   img:string[] = [
     '../assets/img/ahorcado/hangman0.gif',
@@ -33,10 +39,16 @@ export class AhorcadoComponent {
 
   alphabet: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
   words: string[] = ['ahorcado', 'tecnologia', 'heladera', 'futbol', 'computadora', 'automovil', 'internet', 'juego', 'televisor'];
-  maxIncorrectGuesses: number = 7;
 
-  constructor() {
+  constructor(private auth:AuthService, private db:DatabaseService) {
     this.startGame();
+  }
+  ngOnInit(): void {
+    this.auth.userData.subscribe(async(res:any) => {
+      if(res) {
+        this.user = res;
+      }
+    });
   }
 
   startGame(): void {
@@ -70,12 +82,14 @@ export class AhorcadoComponent {
     this.updateWordDisplay();
 
     if (this.isWin()) { 
+      this.victory = true;
       this.gameOver = true;
       Swal.fire(
         'Felicitaciones!',
         `Ganaste!`,
         'success'
       );
+      this.sendResult();
     }
     else if (this.isLose()) {
       this.gameOver = true;
@@ -122,5 +136,24 @@ export class AhorcadoComponent {
   getAvailableLetters(): string[] {
     // Filter out letters that have already been guessed
     return this.alphabet.filter((letter) => !this.isLetterAlreadyGuessed(letter));
+  }
+
+  sendResult() {
+    const date = new Date();
+    const currentDate = date.toLocaleDateString();
+    const result = {
+      game: 'ahorcado',
+      user: this.user,
+      currentDate: currentDate,
+      score: this.maxIncorrectGuesses - this.incorrectGuesses.length,
+      victory: this.victory
+    };
+    this.db.saveResults('ahorcado', result)
+      .then((res:any) => {
+        console.log('Resultados Enviados!');
+      })
+      .catch((err:any) => {
+        console.log('Error al enviar Resultados!');
+      });
   }
 }

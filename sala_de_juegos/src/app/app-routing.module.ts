@@ -6,6 +6,8 @@ import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { LoginGuard } from './guards/login.guard';
+import { ListadosComponent } from './pages/listados/listados.component';
+import { EncuestaComponent } from './pages/encuesta/encuesta.component';
 //import { ChatComponent } from './pages/chat/chat.component';
 
 const routes: Routes = [
@@ -24,6 +26,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/juegos/juegos.module').then(m => m.JuegosModule),
     canActivate: [LoginGuard]
   },
+  { path: 'listados', component:ListadosComponent, canActivate: [LoginGuard] },
+  { path: 'encuesta', component:EncuestaComponent, canActivate: [LoginGuard] },
   { path: '', component:HomeComponent },
   { path: '**', component:ErrorComponent }
 ];
